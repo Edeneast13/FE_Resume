@@ -103,7 +103,7 @@ var projects = {
 				"images": ["images/amber1.png"],
 			}
 		]
-}
+};
 
 bio.display = new function(){
 	var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -129,10 +129,10 @@ bio.display = new function(){
 		}
 	}
 
-	for(var i = 0; i <formattedContact.length; i++){
-		$("#topContacts, #footerContacts").append(formattedContact[i]);
+	for(var j = 0; j <formattedContact.length; j++){
+		$("#topContacts, #footerContacts").append(formattedContact[j]);
 	}
-}
+};
 
 work.display = new function(){
 	if(work.jobs.length > 0){
@@ -151,7 +151,7 @@ work.display = new function(){
 			$(".work-entry:last").append(formattedWorkDescription);
 		}
 	}
-}
+};
 
 projects.display = new function(){
 	if(projects.projects.length > 0){
@@ -169,7 +169,7 @@ projects.display = new function(){
 			$(".project-entry:last").append(formattedProjectImage);
 		}
 	}
-}
+};
 
 education.display = new function(){
 	if(education.schools.length > 0){
@@ -203,7 +203,7 @@ education.display = new function(){
 			$(".education-entry:last").append(formattedOnlineUrl);
 		}
 	}
-}
+};
 
 $("#mapDiv").append(googleMap);
 
