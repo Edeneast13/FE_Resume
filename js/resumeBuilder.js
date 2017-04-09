@@ -10,7 +10,7 @@ var bio = {
 	},
 	"welcomeMessage": "I Currently work as an Android Engineer for Udacity Blitz. Welcome to my resume!",
 	"skills": ["Java", "Android", "RxJava", "Retrofit", "Butterknife", "Dagger", "Material Design", "MVP"],
-	"picture": "images/profile1.jpg",
+	"biopic": "images/profile1.jpg",
 };
 
 var education = {
@@ -19,7 +19,7 @@ var education = {
 				"name": "University of Advancing Technology", 
 				"location": "Tempe, Arizona",
 				"degree": "Associates of Science",
-				"majors": "Computer Science",
+				"majors": ["Computer Science"],
 				"dates": "07/2014 - 11/2015",
 				"url": "www.uat.edu"
 			},
@@ -27,7 +27,7 @@ var education = {
 				"name": "Udacity", 
 				"location": "San Francisco, California",
 				"degree": "Nanodegree",
-				"majors": "Android Development",
+				"majors": ["Android Development"],
 				"dates": "02/2016 - 06/2016",
 				"url": "www.udacity.com"
 			},
@@ -35,7 +35,7 @@ var education = {
 				"name": "Udacity", 
 				"location": "San Francisco, California",
 				"degree": "Nanodegree",
-				"majors": "Front End Web Development",
+				"majors": ["Front End Web Development"],
 				"dates": "03/2017 - present",
 				"url": "www.udacity.com"
 			}
@@ -80,69 +80,69 @@ var work = {
 				"description": "Manage pickup and delivery operations."
 			}
 		]
-}
+};
 
-var project = {
+var projects = {
 	"projects": [
 			{
 				"title": "Silo", 
 				"dates": "10/2016 - present",
 				"description": "With Silo, you can control instead of being controlled by the technology in your life. By selectively blocking distractions, alerts, and notifications on your phone, Silo allows you to reclaim space in your life for focus, creativity, and truly connecting with the world, those around you, and yourself.",
-				"images": "images/silo.jpg",
+				"images": ["images/silo.jpg"],
 			},
 			{
 				"title": "AnDev News", 
 				"dates": "01/2017 - present",
 				"description": "Easily read and access the Android Weekly newsletters from your device",
-				"images": "images/andev1.png",
+				"images": ["images/andev1.png"],
 			},
 			{
 				"title": "AmberCam", 
 				"dates": "2016",
 				"description": "Take photos and store them in cloud storage so they can be accessed from any Android device",
-				"images": "images/amber1.png",
+				"images": ["images/amber1.png"],
 			}
 		]
 }
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedPic = HTMLbioPic.replace("%data%", bio.picture);
-var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+bio.display = new function(){
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
+	var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 
-var formattedContact = [];
-formattedContact.push(HTMLemail.replace("%data%", bio.contacts.email));
-formattedContact.push(HTMLgithub.replace("%data%", bio.contacts.github));
-formattedContact.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-formattedContact.push(HTMLlocation.replace("%data%", bio.contacts.location));
+	var formattedContact = [];
+	formattedContact.push(HTMLemail.replace("%data%", bio.contacts.email));
+	formattedContact.push(HTMLgithub.replace("%data%", bio.contacts.github));
+	formattedContact.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+	formattedContact.push(HTMLlocation.replace("%data%", bio.contacts.location));
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#header").append(formattedWelcome);
-$("#header").append(formattedPic);
+	$("#header").prepend(formattedRole);
+	$("#header").prepend(formattedName);
+	$("#header").append(formattedWelcome);
+	$("#header").append(formattedPic);
 
-if(bio.skills.length > 0){
-	$("#header").append(HTMLskillsStart);
-	for(i in bio.skills){
-		$("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+	if(bio.skills.length > 0){
+		$("#header").append(HTMLskillsStart);
+		for(var i = 0; i < bio.skills.length; i++){
+			$("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+		}
 	}
-}
 
-for(i in formattedContact){
-	$("#topContacts").append(formattedContact[i]);
-	$("#footerContacts").append(formattedContact[i]);
+	for(var i = 0; i <formattedContact.length; i++){
+		$("#topContacts, #footerContacts").append(formattedContact[i]);
+	}
 }
 
 work.display = new function(){
 	if(work.jobs.length > 0){
 		$("#workExperience").append(HTMLworkStart);
-		for(i in work.jobs){
+		for(var i = 0; i < work.jobs.length; i++){
 			var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
 			var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
 			var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
 			var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
 			var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-
 
 			$(".work-entry:last").append(formattedWorkEmployer);
 			$(".work-entry:last").append(formattedWorkTitle);
@@ -153,15 +153,15 @@ work.display = new function(){
 	}
 }
 
-project.display = new function(){
-	if(project.projects.length > 0){
-		for(i in project.projects){
+projects.display = new function(){
+	if(projects.projects.length > 0){
+		for(var i = 0; i < projects.projects.length; i++){
 			$("#projects").append(HTMLprojectStart);
 
-			var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.projects[i].title);
-			var formattedProjectDates = HTMLprojectDates.replace("%data%", project.projects[i].dates);
-			var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.projects[i].description);
-			var formattedProjectImage = HTMLprojectImage.replace("%data%", project.projects[i].images);
+			var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
+			var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+			var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
+			var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images);
 
 			$(".project-entry:last").append(formattedProjectTitle);
 			$(".project-entry:last").append(formattedProjectDates);
@@ -173,7 +173,7 @@ project.display = new function(){
 
 education.display = new function(){
 	if(education.schools.length > 0){
-		for(i in education.schools){
+		for(var i = 0; i < education.schools.length; i++){
 			$("#education").append(HTMLschoolStart);
 
 			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[i].url);
@@ -191,7 +191,7 @@ education.display = new function(){
 	}
 	if(education.onlineCourses.length > 0){
 		$("#education").append(HTMLonlineClasses);
-		for(i in education.onlineCourses){
+		for(var i = 0; i < education.onlineCourses.length; i++){
 			$("#education").append(HTMLschoolStart);
 			var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title).replace("#", education.onlineCourses[i].url);
 			var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);				var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[i].dates);
