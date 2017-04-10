@@ -6,7 +6,8 @@ var bio = {
 		"email": "appdevbri@gmail.com",
 		"github": "edeneast13",
 		"twitter": "@appdevbri",
-		"location": "New York, New York"
+		"location": "New York, New York",
+		"mobile": "631-464-9926"
 	},
 	"welcomeMessage": "I Currently work as an Android Engineer for Udacity Blitz. Welcome to my resume!",
 	"skills": ["Java", "Android", "RxJava", "Retrofit", "Butterknife", "Dagger", "Material Design", "MVP"],
@@ -112,6 +113,7 @@ bio.display = new function(){
 	var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 
 	var formattedContact = [];
+	formattedContact.push(HTMLlocation.replace("%data%", bio.contacts.mobile));
 	formattedContact.push(HTMLemail.replace("%data%", bio.contacts.email));
 	formattedContact.push(HTMLgithub.replace("%data%", bio.contacts.github));
 	formattedContact.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
@@ -161,13 +163,13 @@ projects.display = new function(){
 			var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
 			var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
 			var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
-			var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images);
 
 			$(".project-entry:last").append(formattedProjectTitle);
 			$(".project-entry:last").append(formattedProjectDates);
 			$(".project-entry:last").append(formattedProjectDescription);
 
 			projects.projects[i].images.forEach(function (image){
+				var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
 				$(".project-entry:last").append(formattedProjectImage);
 			});
 		}
@@ -209,34 +211,4 @@ education.display = new function(){
 };
 
 $("#mapDiv").append(googleMap);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
