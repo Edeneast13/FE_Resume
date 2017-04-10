@@ -166,7 +166,10 @@ projects.display = new function(){
 			$(".project-entry:last").append(formattedProjectTitle);
 			$(".project-entry:last").append(formattedProjectDates);
 			$(".project-entry:last").append(formattedProjectDescription);
-			$(".project-entry:last").append(formattedProjectImage);
+
+			projects.projects[i].images.forEach(function (image){
+				$(".project-entry:last").append(formattedProjectImage);
+			});
 		}
 	}
 };
